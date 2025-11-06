@@ -62,7 +62,7 @@ class ProductImage(models.Model):
 class Order(models.Model):
     PAYMENT_METHODS = [
         ("COD", "Cash on Delivery"),
-        ("ONLINE", "Online Payment"),
+        # ("ONLINE", "Online Payment"),
     ]
 
     STATUS_CHOICES = [
