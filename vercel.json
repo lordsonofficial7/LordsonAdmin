@@ -2,13 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "LordsonBackend/wsgi.py",
-      "use": "@vercel/python",
-      "config": { "runtime": "python3.9" }
+     "src": "LordsonBackend/wsgi.py",
+      "use": "@vercel/python"
     }
   ],
   "routes": [
-    { "src": "/static/(.*)", "dest": "/staticfiles/$1" },
-    { "src": "/(.*)", "dest": "LordsonBackend/wsgi.py" }
+    {
+     "src": "/(.*)",
+      "dest": "LordsonBackend/wsgi.py"
+    }
   ]
 }
