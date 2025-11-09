@@ -2,10 +2,8 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import action, api_view
 from django.http import HttpResponse
-# from django.conf import settings
 from .models import Banner, Product, Order
 from .serializers import BannerSerializer, ProductSerializer, OrderSerializer
-# import razorpay
 
 
 # ✅ Root endpoint check
