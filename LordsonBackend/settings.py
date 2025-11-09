@@ -210,10 +210,11 @@ load_dotenv(os.path.join(BASE_DIR, ".env"))
 # CORE SETTINGS
 # -----------------------------------------------------------
 
-SECRET_KEY = os.getenv("SECRET_KEY")
++ SECRET_KEY = os.getenv("SECRET_KEY", "temporary-fallback-key")
 DEBUG = os.getenv("DEBUG", "False") == "True"
 ALLOWED_HOSTS = [
     '.vercel.app',
+    'lordson-admin.vercel.app'
     'localhost', # ✅ add your deployed URL here
 ]
 
@@ -333,7 +334,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Enable Whitenoise for serving static files on Vercel
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
 
 
 # AWS S3 Setup (optional)
