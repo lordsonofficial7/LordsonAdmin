@@ -19,16 +19,20 @@ from django.urls import path, include
 from lordsonApp import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import RedirectView
+
+from django.http import HttpResponse
+
+def empty_favicon(request):
+    return HttpResponse(status=204)  # Empty response, no error
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    # 👇 Frontend view (homepage)
     path('', views.index, name='home'),
-
-    # 👇 API routes
-    path('lordson/', include('lordsonApp.urls')),  # make sure you have this file in your app
+    path('lordson/', include('lordsonApp.urls')),
+    path('favicon.ico', empty_favicon),  # ✅ Add this line
 ]
+
 
 # 👇 Serve uploaded media files (like banner images) during development
 if settings.DEBUG:
