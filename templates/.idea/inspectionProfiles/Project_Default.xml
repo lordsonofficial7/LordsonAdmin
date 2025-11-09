@@ -1,0 +1,29 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <list>
+          <option value="asgiref" />
+          <option value="dj-database-url" />
+          <option value="Django" />
+          <option value="django-cors-headers" />
+          <option value="djangorestframework" />
+          <option value="djangorestframework-simplejwt" />
+          <option value="pillow" />
+          <option value="psycopg2-binary" />
+          <option value="PyJWT" />
+          <option value="sqlparse" />
+          <option value="typing_extensions" />
+          <option value="tzdata" />
+          <option value="whitenoise" />
+          <option value="gunicorn" />
+          <option value="boto3" />
+          <option value="django-storages" />
+          <option value="twilio" />
+          <option value="dotenv" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

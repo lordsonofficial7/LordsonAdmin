@@ -2,14 +2,15 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import action, api_view
 from django.http import HttpResponse
+from django.shortcuts import render
+
 from .models import Banner, Product, Order
 from .serializers import BannerSerializer, ProductSerializer, OrderSerializer
 
 
 # ✅ Root endpoint check
 def index(request):
-    return HttpResponse("✅ Lordson API — Backend is running successfully!")
-
+        return render(request, "readme.html")
 
 # 🖼️ Banner Viewset
 class BannerViewSet(viewsets.ModelViewSet):
