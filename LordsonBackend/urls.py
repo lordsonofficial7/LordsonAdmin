@@ -19,8 +19,6 @@ from django.urls import path, include
 from lordsonApp import views
 from django.conf import settings
 from django.conf.urls.static import static
-from django.views.generic import RedirectView
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,9 +28,6 @@ urlpatterns = [
 
     # 👇 API routes
     path('lordson/', include('lordsonApp.urls')),  # make sure you have this file in your app
-
-    path('favicon.ico', RedirectView.as_view(url='/static/favicon.ico')),
-
 ]
 
 # 👇 Serve uploaded media files (like banner images) during development
