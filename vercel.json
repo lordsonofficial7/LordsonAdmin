@@ -2,19 +2,13 @@
   "version": 2,
   "builds": [
     {
-      "src": "manage.py",
+      "src": "LordsonBackend/wsgi.py",
       "use": "@vercel/python",
-      "config": { "maxLambdaSize": "50mb", "runtime": "python3.9" }
+      "config": { "runtime": "python3.9" }
     }
   ],
   "routes": [
-    {
-      "src": "/static/(.*)",
-      "dest": "/staticfiles/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "manage.py"
-    }
+    { "src": "/static/(.*)", "dest": "/staticfiles/$1" },
+    { "src": "/(.*)", "dest": "LordsonBackend/wsgi.py" }
   ]
 }
