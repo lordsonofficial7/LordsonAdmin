@@ -212,9 +212,18 @@ load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 SECRET_KEY = os.getenv("SECRET_KEY", "unsafe-dev-key")
 DEBUG = os.getenv("DEBUG", "False") == "True"
-ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [
+    '.vercel.app',
+    'localhost',
+    '127.0.0.1',
+    'lordson-admin.vercel.app',  # ✅ add your deployed URL here
+]
 
 CORS_ALLOW_ALL_ORIGINS = True
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.vercel.app',
+]
+
 
 # -----------------------------------------------------------
 # APPLICATIONS
@@ -263,7 +272,7 @@ ROOT_URLCONF = 'LordsonBackend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],  # optional
+        'DIRS': [BASE_DIR / 'templates'],  # ✅ Add this
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -315,7 +324,16 @@ USE_TZ = True
 # -----------------------------------------------------------
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Where your local static files (CSS/JS/images) are located
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+# Where Django will collect static files for production (Vercel will serve this)
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+# Enable Whitenoise for serving static files on Vercel
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # AWS S3 Setup (optional)
