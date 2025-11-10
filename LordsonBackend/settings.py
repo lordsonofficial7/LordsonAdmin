@@ -77,7 +77,6 @@ MIDDLEWARE = [
 # URL & WSGI
 # -----------------------------------------------------------
 
-ROOT_URLCONF = 'LordsonBackend.urls'
 
 TEMPLATES = [
     {
@@ -94,6 +93,7 @@ TEMPLATES = [
         },
     },
 ]
+ROOT_URLCONF = 'LordsonBackend.urls'
 
 WSGI_APPLICATION = 'LordsonBackend.wsgi.application'
 

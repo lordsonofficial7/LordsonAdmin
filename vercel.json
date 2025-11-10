@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "lordsonAdmin/wsgi.py",
+      "src": "LordsonBackend/wsgi.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "lordsonAdmin/wsgi.py"
+      "dest": "LordsonBackend/wsgi.py"
     }
   ]
 }
