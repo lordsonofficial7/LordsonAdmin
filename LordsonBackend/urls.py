@@ -23,7 +23,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    # ✅ Homepage will show readme.html
+    # ✅ Homepage will show index.html
     path('', views.index, name='home'),
 
     # ✅ API using brand name (you can edit this)
