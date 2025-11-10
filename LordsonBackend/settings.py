@@ -77,6 +77,7 @@ MIDDLEWARE = [
 # URL & WSGI
 # -----------------------------------------------------------
 
+ROOT_URLCONF = 'LordsonBackend.urls'
 
 TEMPLATES = [
     {
@@ -93,21 +94,33 @@ TEMPLATES = [
         },
     },
 ]
-ROOT_URLCONF = 'LordsonBackend.urls'
 
 WSGI_APPLICATION = 'LordsonBackend.wsgi.application'
 
 # -----------------------------------------------------------
 # DATABASE (Railway PostgreSQL)
 # -----------------------------------------------------------
-
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv("DATABASE_URL"),
-        conn_max_age=600,
-        ssl_require=True
-    )
-}
+DATABASE_URL = os.getenv("DATABASE_URL")
+if DATABASE_URL:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=600,
+            ssl_require=True
+        )
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'railway',
+            'USER': 'postgres',
+            'PASSWORD': 'vGHstKkvnWagNqdLwzyCKREHKcsTIzOu',
+            'HOST': 'postgres.railway.internal',
+            'PORT': '5432',
+            'CONN_MAX_AGE': 60,
+        }
+    }
 
 # -----------------------------------------------------------
 # PASSWORD VALIDATION
