@@ -210,13 +210,15 @@ load_dotenv(os.path.join(BASE_DIR, ".env"))
 # CORE SETTINGS
 # -----------------------------------------------------------
 
-+ SECRET_KEY = os.getenv("SECRET_KEY", "temporary-fallback-key")
+SECRET_KEY = os.getenv("SECRET_KEY", "temporary-fallback-key")
 DEBUG = os.getenv("DEBUG", "False") == "True"
 ALLOWED_HOSTS = [
     '.vercel.app',
-    'lordson-admin.vercel.app'
-    'localhost', # ✅ add your deployed URL here
+    'lordson-admin.vercel.app',
+    'localhost',
+    '127.0.0.1',
 ]
+
 
 CORS_ALLOW_ALL_ORIGINS = True
 CSRF_TRUSTED_ORIGINS = [
