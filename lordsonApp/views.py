@@ -10,7 +10,8 @@ from .serializers import BannerSerializer, ProductSerializer, OrderSerializer
 
 # ✅ Root endpoint check
 def index(request):
-        return render(request, "readme.html")
+    return render(request, 'index.html', {"brand": "Lordson"})
+
 
 # 🖼️ Banner Viewset
 class BannerViewSet(viewsets.ModelViewSet):

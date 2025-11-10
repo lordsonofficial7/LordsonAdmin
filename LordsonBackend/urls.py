@@ -23,13 +23,12 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    # 👇 Frontend view (homepage)
+    # ✅ Homepage will show index.html
     path('', views.index, name='home'),
 
-    # 👇 API routes
-    path('lordson/', include('lordsonApp.urls')),  # make sure you have this file in your app
+    # ✅ API using brand name (you can edit this)
+    path('lordson/', include('lordsonApp.urls')),
 ]
-
 # 👇 Serve uploaded media files (like banner images) during development
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
