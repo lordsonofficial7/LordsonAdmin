@@ -216,7 +216,8 @@ DEBUG = os.environ.get("DEBUG", "False") == "True"
 ALLOWED_HOSTS = [
     ".vercel.app",
     "localhost",
-    "127.0.0.1"
+    "127.0.0.1",
+    "lordson-admin.vercel.app"
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -324,14 +325,8 @@ USE_TZ = True
 # -----------------------------------------------------------
 
 STATIC_URL = '/static/'
-
-# Where your local static files (CSS/JS/images) are located
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
-
-# Where Django will collect static files for production (Vercel will serve this)
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
 
 # Enable Whitenoise for serving static files on Vercel
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
