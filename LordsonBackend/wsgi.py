@@ -1,19 +1,17 @@
-"""
-WSGI config for LordsonBackend project.
-
-It exposes the WSGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/4.2/howto/deployment/wsgi/
-"""
-
-import os
 import sys
-from django.core.wsgi import get_wsgi_application
+import traceback
 
+try:
+    from django.core.wsgi import get_wsgi_application
+    import os
+    import sys
 
-sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'LordsonBackend.settings')
+    sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'LordsonBackend.settings')
 
-application = get_wsgi_application()
-app = application
+    application = get_wsgi_application()
+    app = application
+except Exception as e:
+    print("🔥 Django WSGI startup error:", e, flush=True)
+    traceback.print_exc()
+    sys.exit(1)
