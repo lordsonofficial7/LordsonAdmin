@@ -12,8 +12,7 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Load environment variables
-load_dotenv(os.path.join(BASE_DIR, ".env"))
-
+load_dotenv()
 # -----------------------------------------------------------
 # CORE SETTINGS
 # -----------------------------------------------------------
@@ -186,3 +185,6 @@ REST_FRAMEWORK = {
 # -----------------------------------------------------------
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+print("🚀 ENV CHECK:", os.getenv("SECRET_KEY"), flush=True)
+print("🚀 DATABASE_URL:", os.getenv("DATABASE_URL"), flush=True)
