@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'whitenoise.runserver_nostatic',
 
     # Your app
     'lordsonApp',
@@ -142,11 +143,14 @@ TIME_ZONE = 'Asia/Kolkata'
 USE_I18N = True
 USE_TZ = True
 
+
 # -----------------------------------------------------------
 # STATIC & MEDIA FILES
 # -----------------------------------------------------------
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]        # ✅ Add this
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
