@@ -12,12 +12,11 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Load environment variables
-load_dotenv()
-# -----------------------------------------------------------
+load_dotenv(os.path.join(BASE_DIR, ".env"))# -----------------------------------------------------------
 # CORE SETTINGS
 # -----------------------------------------------------------
 
-SECRET_KEY = os.getenv("SECRET_KEY", "temporary-fallback-key")
+SECRET_KEY = os.getenv("SECRET_KEY", "unsafe-dev-key")
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = [
@@ -28,10 +27,10 @@ ALLOWED_HOSTS = [
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
-CSRF_TRUSTED_ORIGINS = [
-    'https://*.vercel.app',
-    'https://lordson-admin.vercel.app'
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     'https://*.vercel.app',
+#     'https://lordson-admin.vercel.app'
+# ]
 
 
 # -----------------------------------------------------------
@@ -47,11 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',
-
-    # Your app
     'lordsonApp',
-
-    # Third-party apps
     'corsheaders',
     'rest_framework',
     'storages',
@@ -133,6 +128,23 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
+
+
+# -----------------------------------------------------------
+# REST FRAMEWORK
+# -----------------------------------------------------------
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+}
+
+
 # -----------------------------------------------------------
 # INTERNATIONALIZATION
 # -----------------------------------------------------------
@@ -166,25 +178,6 @@ MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# -----------------------------------------------------------
-# REST FRAMEWORK
-# -----------------------------------------------------------
-
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
-    ],
-    'DEFAULT_RENDERER_CLASSES': [
-        'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer',
-    ],
-}
-
-# -----------------------------------------------------------
-# DEFAULT FIELD TYPE
-# -----------------------------------------------------------
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 print("🚀 ENV CHECK:", os.getenv("SECRET_KEY"), flush=True)
 print("🚀 DATABASE_URL:", os.getenv("DATABASE_URL"), flush=True)
