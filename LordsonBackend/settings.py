@@ -12,27 +12,24 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Load environment variables
-load_dotenv(os.path.join(BASE_DIR, ".env"))
-
-# -----------------------------------------------------------
+load_dotenv(os.path.join(BASE_DIR, ".env"))# -----------------------------------------------------------
 # CORE SETTINGS
 # -----------------------------------------------------------
 
-SECRET_KEY = os.getenv("SECRET_KEY", "temporary-fallback-key")
+SECRET_KEY = os.getenv("SECRET_KEY", "unsafe-dev-key")
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = [
     ".vercel.app",
     "localhost",
     "127.0.0.1",
-    "lordson-admin.vercel.app"
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
-CSRF_TRUSTED_ORIGINS = [
-    'https://*.vercel.app',
-    'https://lordson-admin.vercel.app'
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     'https://*.vercel.app',
+#     'https://lordson-admin.vercel.app'
+# ]
 
 
 # -----------------------------------------------------------
@@ -47,11 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # Your app
+    'whitenoise.runserver_nostatic',
     'lordsonApp',
-
-    # Third-party apps
     'corsheaders',
     'rest_framework',
     'storages',
@@ -133,6 +127,23 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
+
+
+# -----------------------------------------------------------
+# REST FRAMEWORK
+# -----------------------------------------------------------
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+}
+
+
 # -----------------------------------------------------------
 # INTERNATIONALIZATION
 # -----------------------------------------------------------
@@ -142,11 +153,14 @@ TIME_ZONE = 'Asia/Kolkata'
 USE_I18N = True
 USE_TZ = True
 
+
 # -----------------------------------------------------------
 # STATIC & MEDIA FILES
 # -----------------------------------------------------------
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]        # ✅ Add this
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
@@ -163,22 +177,8 @@ MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# -----------------------------------------------------------
-# REST FRAMEWORK
-# -----------------------------------------------------------
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
-    ],
-    'DEFAULT_RENDERER_CLASSES': [
-        'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer',
-    ],
-}
-
-# -----------------------------------------------------------
-# DEFAULT FIELD TYPE
-# -----------------------------------------------------------
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+print("🚀 ENV CHECK:", os.getenv("SECRET_KEY"), flush=True)
+print("🚀 DATABASE_URL:", os.getenv("DATABASE_URL"), flush=True)
+print("🚀 ENV CHECK:", os.getenv("DEBUG"), flush=True)
+print("🚀 DATABASE_URL:", os.getenv("AWS_ACCESS_KEY_ID"), flush=True)

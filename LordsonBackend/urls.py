@@ -19,6 +19,10 @@ from django.urls import path, include
 from lordsonApp import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.http import HttpResponse
+
+def empty_favicon(request):
+    return HttpResponse(status=204)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +32,9 @@ urlpatterns = [
 
     # ✅ API using brand name (you can edit this)
     path('lordson/', include('lordsonApp.urls')),
+
+    path('favicon.ico', empty_favicon),  # ✅ prevents favicon 404/500 on Vercel
+
 ]
 # 👇 Serve uploaded media files (like banner images) during development
 if settings.DEBUG:
