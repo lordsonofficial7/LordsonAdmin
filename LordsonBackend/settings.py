@@ -23,7 +23,6 @@ ALLOWED_HOSTS = [
     ".vercel.app",
     "localhost",
     "127.0.0.1",
-    "lordson-admin.vercel.app"
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -181,3 +180,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 print("🚀 ENV CHECK:", os.getenv("SECRET_KEY"), flush=True)
 print("🚀 DATABASE_URL:", os.getenv("DATABASE_URL"), flush=True)
+print("🚀 ENV CHECK:", os.getenv("DEBUG"), flush=True)
+print("🚀 DATABASE_URL:", os.getenv("AWS_ACCESS_KEY_ID"), flush=True)
