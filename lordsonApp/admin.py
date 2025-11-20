@@ -1,5 +1,10 @@
-from django.contrib import admin
 from django import forms
+from django.contrib import admin
+
+import datetime
+import json
+from openpyxl import Workbook
+from django.http import HttpResponse
 
 from .models import Banner, Product, ProductImage, Order
 
@@ -42,26 +47,7 @@ class ProductAdmin(admin.ModelAdmin):
     readonly_fields = ('final_price',)
     inlines = [ProductImageInline]
 
-#
-#
-# @admin.register(Order)
-# class OrderAdmin(admin.ModelAdmin):
-#     list_display = ("id", "customer_name", "phone", "total_amount", "payment_method", "status", "created_at")
-#     list_filter = ("status", "payment_method", "created_at")
-#     search_fields = ("customer_name", "phone", "email")
-#
-#     # allows admin to update order status easily
-#     list_editable = ("status",)
 
-
-
-# admin.py
-from django.contrib import admin
-from .models import Order
-from openpyxl import Workbook
-from django.http import HttpResponse
-import datetime
-import json
 
 
 @admin.register(Order)
