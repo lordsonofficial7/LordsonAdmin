@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Banner(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=200)
     image = models.ImageField(upload_to='banners/')
     description = models.TextField(blank=True, null=True)  # ✅ optional field
     is_active = models.BooleanField(default=True)
