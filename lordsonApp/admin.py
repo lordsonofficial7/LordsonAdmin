@@ -1,17 +1,18 @@
-from django import forms
-from django.contrib import admin
-
 import datetime
 import json
-from openpyxl import Workbook
-from django.http import HttpResponse
 
-from .models import Banner, Product, ProductImage, Order
+from django import forms
+from django.contrib import admin
+from django.http import HttpResponse
+from openpyxl import Workbook
+
+from lordsonApp.models import Banner, Product, Order, ProductImage
 
 
 @admin.register(Banner)
 class BannerAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'image')
+
 
 
 class ProductForm(forms.ModelForm):
@@ -46,6 +47,7 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description')
     readonly_fields = ('final_price',)
     inlines = [ProductImageInline]
+
 
 
 
@@ -131,3 +133,4 @@ class OrderAdmin(admin.ModelAdmin):
         return response
 
     export_to_excel.short_description = "📥 Download selected orders as Excel"
+

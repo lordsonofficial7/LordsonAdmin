@@ -2,12 +2,24 @@
   "version": 2,
   "builds": [
     {
-      "src": "vercel_entry.py",
+      "src": "LordsonAdmin/wsgi.py",
       "use": "@vercel/python",
-      "config": { "runtime": "python3.9.13" }
+      "config": { "maxLambdaSize": "50mb", "runtime": "python3.9" }
+    },
+    {
+      "src": "staticfiles_build/static/**",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "vercel_entry.py" }
-  ]
+    {
+      "src": "/static/(.*)",
+      "dest": "/staticfiles_build/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "LordsonAdmin/wsgi.py"
+    }
+  ],
+  "buildCommand": "python3 manage.py collectstatic --noinput"
 }

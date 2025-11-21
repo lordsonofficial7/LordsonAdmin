@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/lordson_Backend.iml" filepath="$PROJECT_DIR$/.idea/lordson_Backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/LordsonAdmin.iml" filepath="$PROJECT_DIR$/.idea/LordsonAdmin.iml" />
     </modules>
   </component>
 </project>
