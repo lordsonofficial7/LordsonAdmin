@@ -1,17 +1,14 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
-from rest_framework.decorators import action, api_view
-from django.http import HttpResponse
-from django.shortcuts import render
+from rest_framework.decorators import action
 
+from django.http import HttpResponse
 from .models import Banner, Product, Order
 from .serializers import BannerSerializer, ProductSerializer, OrderSerializer
 
 
-# ✅ Root endpoint check
-def index(request):
-    return render(request, 'index.html', {"brand": "Lordson"})
-
+def home(request):
+    return HttpResponse("<h1>✅ Lordson Backend Running Successfully</h1>")
 
 # 🖼️ Banner Viewset
 class BannerViewSet(viewsets.ModelViewSet):
@@ -19,9 +16,11 @@ class BannerViewSet(viewsets.ModelViewSet):
     serializer_class = BannerSerializer
 
 
+
+
 # 👕 Product Viewset
 class ProductViewSet(viewsets.ModelViewSet):
-    queryset = Product.objects.all().order_by('-created_at')
+    queryset = Product.objects.order_by('-created_at')
     serializer_class = ProductSerializer
 
     # 🔹 Get all T-Shirts
@@ -37,6 +36,9 @@ class ProductViewSet(viewsets.ModelViewSet):
         products = Product.objects.filter(category__iexact='sweatshirt').order_by('-created_at')
         serializer = self.get_serializer(products, many=True)
         return Response(serializer.data)
+
+
+
 
 
 # 🧾 Orders (COD + Online)
